@@ -1,22 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "Aarchid | AI-Driven Plant Health Diagnostics",
+  title: {
+    default: "Aarchid | AI-Driven Plant Health Diagnostics",
+    template: "%s | Aarchid",
+  },
   description:
     "Detect, adapt, and grow smarter with every observation. Aarchid uses AI vision and environmental intelligence to diagnose plant health, track growth velocity, and deliver expert-backed care recommendations.",
   keywords: [
@@ -25,9 +14,11 @@ export const metadata: Metadata = {
     "AI plant diagnosis",
     "botanical intelligence",
     "plant health app",
-    "forensic plant analysis",
-    "growth tracking",
     "plant disease detection",
+    "growth tracking",
+    "forensic plant analysis",
+    "digital twin plant",
+    "plant identification",
   ],
   authors: [
     { name: "Dilpreet Grover" },
@@ -41,7 +32,6 @@ export const metadata: Metadata = {
     canonical: "https://aarchid.space",
   },
   manifest: "/site.webmanifest",
-  themeColor: "#16a34a",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -49,6 +39,31 @@ export const metadata: Metadata = {
   },
   formatDetection: {
     telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://aarchid.space",
+    siteName: "Aarchid",
+    title: "Aarchid | AI-Driven Plant Health Diagnostics",
+    description:
+      "The first $1/month/plant platform. Instant identification, AI health diagnostics, and automated care built on edge infrastructure.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Aarchid — Botanical AI Infrastructure",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aarchid | AI-Driven Plant Health Diagnostics",
+    description:
+      "The first $1/month/plant platform. Instant identification, AI health diagnostics, and automated care built on edge infrastructure.",
+    images: ["/og-image.png"],
+    creator: "@aarchid",
   },
   robots: {
     index: true,
@@ -63,31 +78,35 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#224234" },
+    { media: "(prefers-color-scheme: dark)", color: "#1A2E23" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable
-      )}
-    >
+    <html lang="en" className="h-full antialiased">
       <head>
-        <meta name="theme-color" content="#16a34a" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>{children}</body>
+      <body
+        className="min-h-full flex flex-col"
+        style={{ fontFamily: "'Lufga', sans-serif" }}
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
     </html>
   );
 }

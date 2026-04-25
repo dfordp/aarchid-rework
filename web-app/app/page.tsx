@@ -1,257 +1,177 @@
-"use client";
+import { WaitlistForm } from '@/components/WaitlistForm'
+import { BentoGrid } from '@/components/BentoGrid'
+import { ComparisonMatrix } from '@/components/ComparisonMatrix'
+import { Navigation } from '@/components/Navigation'
+import { PhoneMockup } from '@/components/PhoneMockup'
+import Link from 'next/link'
 
-import { motion } from "framer-motion";
-import {
-  Leaf,
-  Sparkles,
-  Zap,
-  TrendingUp,
-  BarChart3,
-  Activity,
-  Brain,
-  Shield,
-} from "lucide-react";
-import {
-  RadarChart,
-  Radar,
-  PolarGrid,
-  PolarAngleAxis,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-} from "recharts";
-import { useEffect, useState, useMemo } from "react";
-
-const radarData = [
-  { metric: "Detection", Aarchid: 95, Industry: 72 },
-  { metric: "Citations", Aarchid: 92, Industry: 60 },
-  { metric: "Latency", Aarchid: 88, Industry: 65 },
-  { metric: "Growth Tracking", Aarchid: 94, Industry: 58 },
-  { metric: "Accuracy", Aarchid: 96, Industry: 75 },
-];
-
-const healthScoreData = [
-  { week: "W0", score: 52 },
-  { week: "W1", score: 58 },
-  { week: "W2", score: 67 },
-  { week: "W3", score: 74 },
-  { week: "W4", score: 81 },
-  { week: "W5", score: 86 },
-  { week: "W6", score: 92 },
-];
-
-export default function LandingPage() {
-  const radarConfig = useMemo(() => ({ outerRadius: 105 }), []);
-  const [glow, setGlow] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => setGlow((g) => !g), 2000);
-    return () => clearInterval(timer);
-  }, []);
-
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-green-50 text-gray-800">
-      {/* HERO */}
-      <section className="relative flex flex-col items-center justify-center text-center pt-24 md:pt-32 px-4 sm:px-8 overflow-hidden">
-        {/* Animated background visual */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1.2 }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#a7f3d0_0%,_transparent_70%)]"
-        />
-        <motion.div
-          className={`absolute w-72 h-72 rounded-full blur-3xl bg-green-300/40 ${
-            glow ? "opacity-60" : "opacity-20"
-          }`}
-          animate={{ scale: glow ? 1.3 : 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-        />
+    <div className="w-full">
+      {/* Navigation */}
+      <Navigation />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center gap-2 mb-3"
+      {/* Hero Section */}
+      <section
+        className="px-8 md:px-12 texture-noise texture-linen texture-botanical-bg py-6"
+        style={{
+          backgroundColor: '#EDEDE4',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: '120px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Decorative botanical SVGs */}
+        <svg
+          style={{
+            position: 'absolute',
+            top: '10%',
+            left: '-5%',
+            width: '300px',
+            height: '500px',
+            opacity: 0.04,
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+          viewBox="0 0 300 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <Leaf className="h-8 w-8 text-green-600" />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900">
-            Aarchid
-          </h1>
-        </motion.div>
+          <path
+            d="M150 480 C150 480 50 400 30 280 C10 160 80 60 150 20 C220 60 290 160 270 280 C250 400 150 480 150 480Z"
+            fill="#224234"
+          />
+          <path d="M150 20 C130 100 90 140 60 200" stroke="#EDEDE4" strokeWidth="1.5" opacity="0.4"/>
+          <path d="M150 20 C170 100 210 140 240 200" stroke="#EDEDE4" strokeWidth="1.5" opacity="0.4"/>
+          <path d="M150 20 C148 150 145 300 150 480" stroke="#EDEDE4" strokeWidth="1.5" opacity="0.4"/>
+          <path d="M120 180 C130 170 150 165 160 175" stroke="#EDEDE4" strokeWidth="1" opacity="0.3"/>
+          <path d="M100 250 C115 235 150 228 165 240" stroke="#EDEDE4" strokeWidth="1" opacity="0.3"/>
+          <path d="M110 320 C125 305 150 298 168 310" stroke="#EDEDE4" strokeWidth="1" opacity="0.3"/>
+        </svg>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="max-w-2xl text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mt-4"
+        <svg
+          style={{
+            position: 'absolute',
+            top: '5%',
+            right: '-8%',
+            width: '200px',
+            height: '350px',
+            opacity: 0.03,
+            pointerEvents: 'none',
+            zIndex: 0,
+            transform: 'scaleX(-1) rotate(15deg)',
+          }}
+          viewBox="0 0 300 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          Your Digital Botanist. Forensic plant diagnostics with AI vision, environmental intelligence, and expert citations.
-        </motion.p>
+          <path
+            d="M150 480 C150 480 50 400 30 280 C10 160 80 60 150 20 C220 60 290 160 270 280 C250 400 150 480 150 480Z"
+            fill="#224234"
+          />
+          <path d="M150 20 C148 150 145 300 150 480" stroke="#EDEDE4" strokeWidth="1.5" opacity="0.4"/>
+        </svg>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-8 flex gap-4 flex-wrap justify-center"
-        >
-          <a
-            href="/auth/signup"
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-lg transition-all"
-          >
-            Get Started Free
-          </a>
-          <a
-            href="#features"
-            className="px-8 py-3 border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold rounded-lg transition-all"
-          >
-            Learn More
-          </a>
-        </motion.div>
+        {/* Hero Content Grid Container */}
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-32 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:items-center relative z-10">
+          
+          {/* Left Column — Text Content (cols 1-6 on wide screens) */}
+          <div className="col-span-1 lg:col-span-6">
+            <p
+              className="text-xs uppercase tracking-wider mb-6 font-Lufga"
+              style={{ color: '#495C47', letterSpacing: '0.15em', fontWeight: 500 }}
+            >
+              Botanical AI Infrastructure
+            </p>
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-Lufga font-medium mb-6 md:mb-8"
+              style={{ color: '#224234', lineHeight: 1.1 }}
+            >
+              Your plants deserve a digital twin.
+            </h1>
 
+            <div className="mb-8 md:mb-12 w-full max-w-md">
+              <WaitlistForm />
+            </div>
+          </div>
+
+          {/* Right Column — Phone Mockup (cols 7-12 on wide screens) */}
+          <div className="col-span-1 lg:col-span-6 flex justify-center lg:justify-end items-center">
+            <PhoneMockup />
+          </div>
+        </div>
       </section>
 
-      {/* FEATURES */}
-      <section id="features" className="px-4 sm:px-8 md:px-16 mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center max-w-6xl mx-auto">
-        {[
-          {
-            icon: <Brain className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Forensic Health Audit",
-            desc: "AI vision identifies pests, diseases, and deficiencies. Environmental context + citations from peer-reviewed sources.",
-          },
-          {
-            icon: <TrendingUp className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Growth Velocity Tracking",
-            desc: "Pixel-based measurements track leaf expansion and stem growth. Species-specific benchmarking.",
-          },
-          {
-            icon: <Shield className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Asset Management",
-            desc: "Manage 50+ plants with batch actions. Generate health certificates, maintain care history archives.",
-          },
-          {
-            icon: <Activity className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Real-Time Monitoring",
-            desc: "Severity scoring (1-100). Environmental data correlation over 7 days.",
-          },
-          {
-            icon: <Sparkles className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Smart Recommendations",
-            desc: "Actionable care interventions backed by botanical expertise and research.",
-          },
-          {
-            icon: <BarChart3 className="h-6 w-6 mx-auto text-green-600" />,
-            title: "Performance Analytics",
-            desc: "Visualize health trends, growth trajectories, and seasonal variations in one dashboard.",
-          },
-        ].map((feature, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="p-6 bg-white border border-green-100 rounded-2xl shadow-sm hover:shadow-md transition-all"
+      {/* Bento Grid Section */}
+      <section
+        className="px-8 md:px-12 py-20 md:py-28 texture-noise texture-dot-grid-subtle"
+        style={{ backgroundColor: '#EDEDE4' }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <p
+            className="text-xs uppercase tracking-widest mb-4 font-Lufga"
+            style={{ color: '#495C47', fontWeight: 500 }}
           >
-            {feature.icon}
-            <h3 className="font-semibold text-gray-900 mt-3 text-lg">
-              {feature.title}
-            </h3>
-            <p className="text-gray-600 text-sm mt-2">{feature.desc}</p>
-          </motion.div>
-        ))}
-      </section>
-
-      {/* BENCHMARK SECTION */}
-      <section className="px-4 sm:px-8 md:px-20 mt-24 grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
-        {/* Radar */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl border border-green-100 bg-green-50 p-6"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="h-5 w-5 text-green-600" />
-            <h3 className="text-lg font-semibold text-gray-900">
-              Diagnostic Accuracy Benchmark
-            </h3>
-          </div>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={radarData} outerRadius={radarConfig.outerRadius}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="metric" />
-                <Radar
-                  name="Aarchid"
-                  dataKey="Aarchid"
-                  fill="#16a34a"
-                  fillOpacity={0.35}
-                  stroke="#16a34a"
-                />
-                <Radar
-                  name="Industry Avg"
-                  dataKey="Industry"
-                  fill="#9ca3af"
-                  fillOpacity={0.25}
-                  stroke="#9ca3af"
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </motion.div>
-
-        {/* Line */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl border border-green-100 bg-white p-6 shadow-sm"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <Zap className="h-5 w-5 text-green-600" />
-            <h3 className="text-lg font-semibold text-gray-900">
-              Health Score Improvement
-            </h3>
-          </div>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={healthScoreData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="week" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Line
-                  type="monotone"
-                  dataKey="score"
-                  stroke="#16a34a"
-                  strokeWidth={2.5}
-                  dot={{ r: 3 }}
-                  activeDot={{ r: 5 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <p className="text-xs text-gray-500 mt-3">
-            Average improvement trajectory over 6 weeks with Aarchid guidance
+            The Platform
           </p>
-        </motion.div>
+          <h2
+            className="text-4xl md:text-5xl font-Lufga mb-16"
+            style={{ color: '#224234', fontWeight: 500 }}
+          >
+            Everything your plants need. Nothing they don't.
+          </h2>
+          <BentoGrid />
+        </div>
       </section>
 
-  
+      {/* Comparison Matrix Section */}
+      <section
+        className="px-8 md:px-12 py-20 md:py-28 texture-crosshatch"
+        style={{ backgroundColor: '#F7F5F0' }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <ComparisonMatrix />
+        </div>
+      </section>
 
-      {/* FOOTER */}
-      <footer className="py-10 text-center text-gray-500 text-sm border-t border-green-100 bg-white">
-        <p>
-          Built with 🌱 for pro-sumers and rare plant collectors.
+      {/* Second Waitlist CTA Section */}
+      <section
+        className="px-8 md:px-12 py-20 md:py-28 texture-noise-dark texture-botanical-bg-dark"
+        style={{ backgroundColor: '#224234' }}
+        id="waitlist-section"
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          <h2
+            className="text-4xl md:text-5xl font-Lufga mb-6"
+            style={{ color: '#EDEDE4', fontWeight: 500 }}
+          >
+            Be first to grow smarter.
+          </h2>
+          <p
+            className="text-lg font-Lufga mb-12"
+            style={{ color: 'rgba(237, 237, 228, 0.7)', fontWeight: 400 }}
+          >
+            Join the waitlist. We'll notify you when your region goes live.
+          </p>
+          <WaitlistForm variant="dark" />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer
+        className="px-8 md:px-12 h-20 flex items-center justify-between texture-noise-dark"
+        style={{ backgroundColor: '#1A2E23' }}
+      >
+        <p className="font-Lufga text-sm" style={{ color: 'rgba(237, 237, 228, 0.6)' }}>
+          © 2026 Aarchid
         </p>
+        <Link href="https://dilpreetgrover.me" target="_blank" rel="noopener noreferrer" className="font-Lufga text-sm transition-all hover:opacity-100" style={{ color: 'rgba(237, 237, 228, 0.6)' }}>
+          Dilpreet Grover
+        </Link>
       </footer>
     </div>
-  );
+  )
 }
